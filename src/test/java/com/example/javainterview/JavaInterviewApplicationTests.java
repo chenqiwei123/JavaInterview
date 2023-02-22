@@ -19,5 +19,7 @@ class JavaInterviewApplicationTests {
         int[] arr1=arr;
         arr1[2]=100;
         System.out.printf(String.valueOf(arr[2]));
+        System.out.println(arr); //[I@15aeb7ab  [代表一维数组  T 代表Int类型  @表示在哪 15aeb7ab表示地址
+        System.out.println(arr1); //[I@15aeb7ab  [代表一维数组  T 代表Int类型  @表示在哪 15aeb7ab表示地址
     }
 }
