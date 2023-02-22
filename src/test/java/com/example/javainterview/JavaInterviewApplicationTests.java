@@ -21,5 +21,10 @@ class JavaInterviewApplicationTests {
         System.out.printf(String.valueOf(arr[2]));
         System.out.println(arr); //[I@15aeb7ab  [代表一维数组  T 代表Int类型  @表示在哪 15aeb7ab表示地址
         System.out.println(arr1); //[I@15aeb7ab  [代表一维数组  T 代表Int类型  @表示在哪 15aeb7ab表示地址
+        int[] ints=new int[3];
+        System.out.println(ints[0]);
+        int[][] str = new int[3][];
+        System.out.println(str[1]); //null
+        //System.out.println(str[0][0]); //报错了
     }
 }
