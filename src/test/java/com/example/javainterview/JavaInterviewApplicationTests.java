@@ -12,6 +12,30 @@ class JavaInterviewApplicationTests {
 
     // 一维数组存储原理理解
     public static void main(String[] args) {
+        // java 基础知识
+        //javaBasesInfo();
+        // 杨辉三角
+        yanghui();
+    }
+
+    private static void yanghui() {
+        // 杨辉三角
+        int[][] yh=new int[10][];
+        for (int i = 0; i < yh.length; i++) {
+            yh[i]=new int[i+1];
+            for (int j = 0; j < yh[i].length; j++) {
+                if (j==i || j==0){
+                    yh[i][j]=1;
+                }else {
+                    yh[i][j]=yh[i-1][j]+yh[i-1][j-1];
+                }
+                System.out.print(yh[i][j]+"\t");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void javaBasesInfo() {
         int[] arr = new int[3];
         arr[0]=1;
         arr[1]=2;
