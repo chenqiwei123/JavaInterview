@@ -3,6 +3,7 @@ package com.example.javainterview;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 @SpringBootTest
@@ -15,11 +16,91 @@ class JavaInterviewApplicationTests {
     // 一维数组存储原理理解
     public static void main(String[] args) {
         // java 基础知识
-        //javaBasesInfo();
+        // javaBasesInfo();
         // 杨辉三角
-        //yanghui();
+        // yanghui();
         // 回型数
-        JavaInterviewApplicationTests();
+        // JavaInterviewApplicationTests();
+        // 数组反转
+        // reversal();
+        // 二分法
+        // dichotomy();
+        // 冒泡排序
+        // BubbleSort();
+        // Arrays常见方法
+        arraysCommonMethods();
+
+
+    }
+
+    private static void arraysCommonMethods() {
+        int[] arr=new int[]{1,22,4,15,62,8,901,13,14,23,45,66,77,88,99,104};
+        int[] arr1=new int[]{1,22,4,15,62,77,88,99,104};
+        // 判断两个数组是否相等
+        final boolean equals = Arrays.equals(arr, arr1);
+        System.out.println(equals);
+        // 打印数组
+        System.out.println(Arrays.toString(arr));
+        // 数组排序
+        Arrays.sort(arr1);
+        System.out.println(Arrays.toString(arr1));
+        // 数组填充
+        Arrays.fill(arr1,135);
+        System.out.println(Arrays.toString(arr1));
+        // 二分查找
+        int index=Arrays.binarySearch(arr,25);
+        System.out.println(index);
+    }
+
+    private static void BubbleSort() {
+        int[] arr = new int[]{1,22,4,15,62,8,901,13,14,23,45,66,77,88,99,104};
+        for (int j = 0; j < arr.length-1; j++) {
+            for (int i = 0; i < arr.length-1-j; i++) {
+                if (arr[i]>arr[i+1]) {
+                    arr[i]=arr[i]+arr[i+1];
+                    arr[i+1]=arr[i]-arr[i+1];
+                    arr[i]=arr[i]-arr[i+1];
+                }
+            }
+        }
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i]+"\t");
+        }
+    }
+
+    private static void dichotomy() {
+        int[] arr = new int[]{1,2,4,5,6,8,9,13,14,23,45,66,77,88,99,104};
+        int head=0,end=arr.length-1;
+        int target = 45;
+        while (true){
+            int middle = (head+end)/2;
+            if (head>end){
+                System.out.println("找不到索引!!");
+                break;
+            }
+            if (target==arr[middle]){
+                System.out.println(arr+"的目标值:"+target+"的索引下标值为"+middle);
+                break;
+            }
+            if (target>arr[middle]){
+                head=middle+1;
+            }
+            if (target<arr[middle]){
+                end=middle-1;
+            }
+        }
+    }
+
+    private static void reversal() {
+        int[] arr =new int[]{1,3,5,7,9,11,13,15,17,19,21};
+        for (int i = 0; i < arr.length/2; i++) {
+            arr[i]=arr[i]+arr[arr.length-1-i];
+            arr[arr.length-1-i]=arr[i]-arr[arr.length-1-i];
+            arr[i]=arr[i]-arr[arr.length-1-i];
+        }
+        for (int i = 0; i < arr.length; i++) {
+            System.out.printf(arr[i]+"\t");
+        }
     }
 
     private static void JavaInterviewApplicationTests() {
