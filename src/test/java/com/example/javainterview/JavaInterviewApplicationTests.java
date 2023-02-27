@@ -27,10 +27,66 @@ class JavaInterviewApplicationTests {
         // dichotomy();
         // 冒泡排序
         // BubbleSort();
+        // 快速排序
+        quicklyOH();
         // Arrays常见方法
-        arraysCommonMethods();
+        //arraysCommonMethods();
 
 
+    }
+
+    private static void quicklyOH() {
+        int[] arr=new int[]{31,22,4,15,62,8,12,901,13,14,23,999,45,66,77,88,99,104};
+        quickSort(arr,0,arr.length-1);
+        System.out.println(Arrays.toString(arr));
+    }
+
+    private static void quickSort(int arr[],int left,int right) {
+        if (left<right){
+            int a=partition(arr,left,right);
+            quickSort(arr,left,a-1);
+            quickSort(arr,a+1,right);
+        }
+    }
+    private static int partition(int[] arr,int left,int right) {
+        System.out.println("变换前:"+Arrays.toString(arr)+"left="+left+"right="+right);
+        if (left>=right){
+            return left;
+        }
+        int pivot = arr[left]; //比较的值
+        int directIndex = left; //初始化的index
+        boolean isLeft=false;
+        for (;left<right;){
+            if (isLeft) {
+                if (arr[left] > pivot) {
+                    swap(arr, directIndex, left);
+                    isLeft = false;//right寻找
+                    right--;
+                    directIndex=left;
+                }else {
+                    left++;
+                }
+
+            }
+            if (!isLeft) {
+                if (arr[right] < pivot) {
+                    swap(arr, directIndex, right);
+                    isLeft = true;
+                    directIndex = right;
+                    left++;
+                }else {
+                    right--;
+                }
+
+            }
+        }
+        System.out.println("变换后:"+Arrays.toString(arr)+"left="+left+"right="+right);
+        return directIndex;
+    }
+    private static void swap(int[] arr,int i,int j){
+        arr[i] = arr[i] + arr[j];
+        arr[j] = arr[i] - arr[j];
+        arr[i] = arr[i] - arr[j];
     }
 
     private static void arraysCommonMethods() {
