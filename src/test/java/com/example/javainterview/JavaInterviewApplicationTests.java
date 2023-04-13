@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 @SpringBootTest
@@ -15,6 +17,20 @@ class JavaInterviewApplicationTests {
 
     // 一维数组存储原理理解
     public static void main(String[] args) {
+        run();
+        // 杨辉三角
+
+
+    }
+
+
+    // 杨辉三角
+    public void YHSJ(){
+
+    }
+
+
+    public static void run(){
         // java 基础知识
         // javaBasesInfo();
         // 杨辉三角
@@ -28,11 +44,44 @@ class JavaInterviewApplicationTests {
         // 冒泡排序
         // BubbleSort();
         // 快速排序
-        quicklyOH();
+        // quicklyOH();
         // Arrays常见方法
-        //arraysCommonMethods();
+        // arraysCommonMethods();
+        // 斐波那契数列
+        // fibonacciSequenceArrays();
+        // 汉诺塔游戏
+        towerOfHanoi(3);
+    }
 
+    private static void towerOfHanoi(int n) {
+        // 从A->C过程
+        hanoi(n,"A","B","C");
+    }
 
+    private static void hanoi(int n, String a, String b, String c) {
+        if (n==1){
+            System.out.println(a+"=>"+c);
+        }else {
+            hanoi(n-1,a,c,b);//模拟成就两个,除最底层一个其余的看成一个,模拟两个第一步 a->b
+            System.out.println(a+"=>"+c); //这就是模拟成最简单的两个 a->b a->c b->c
+            hanoi(n-1,b,a,c); // 就是模拟简单的两个 b-c 的过程
+        }
+    }
+
+    private static void fibonacciSequenceArrays() {
+        int n=17;
+        int[] fibonacciSequence=new int[n];
+        for (int i = 0; i <fibonacciSequence.length ; i++) {
+            fibonacciSequence[i]=fibonacciSequence(i+1);
+        }
+        System.out.printf(Arrays.toString(fibonacciSequence));
+    }
+
+    private static int fibonacciSequence(int n) {
+        if (n==1||n==2){
+            return 1;
+        }
+        return fibonacciSequence(n-1)+fibonacciSequence(n-2);
     }
 
     private static void quicklyOH() {
@@ -206,6 +255,35 @@ class JavaInterviewApplicationTests {
             }
             System.out.println();
         }
+    }
+
+    public int mostFrequentEven(int[] nums) {
+        Map<Integer,Integer> map =new HashMap<>();
+        int[] number=new int[nums.length];
+        boolean flag=false;
+        Integer num=0;
+        Integer index=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]%2==0){
+                flag=true;
+                map.put(nums[i],map.getOrDefault(nums[i],1));
+            }
+        }
+        if (!flag){
+            return -1;
+        }
+        for (Map.Entry<Integer, Integer> integerIntegerEntry : map.entrySet()) {
+            Integer key=integerIntegerEntry.getKey();
+            if (map.get(key)>num){
+                num=map.get(key);
+                index=key;
+            }
+            if (map.get(key)==num&&key<index){
+                num=map.get(key);
+                index=key;
+            }
+        }
+        return index;
     }
 
     private static int[] loop(int number,int i,int j,boolean X,boolean plus,int[][] arr){
