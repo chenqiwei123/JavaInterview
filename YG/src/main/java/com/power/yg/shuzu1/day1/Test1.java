@@ -1,6 +1,6 @@
-package com.power.yg.SHUZU;
+package com.power.yg.shuzu1.day1;
 
-public class DAYONE {
+public class Test1 {
     public static void main(String[] args) {
         //1.数组的特点：1)在内存中连续不间断的空间;2）可以包含基本数据类型也可以包含引用数据类型;3)长度不可以进行变化
         //2.数组的写法
