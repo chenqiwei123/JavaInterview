@@ -50,7 +50,11 @@ class JavaInterviewApplicationTests {
         // 斐波那契数列
         // fibonacciSequenceArrays();
         // 汉诺塔游戏
-        towerOfHanoi(3);
+        // towerOfHanoi(3);
+        String ss="qwrwfxsvfdbn";
+       char[] chars = "cccqqqwwww".toCharArray();
+        ss.getChars(2,4,chars,3);
+        System.out.println(chars);
     }
 
     private static void towerOfHanoi(int n) {
