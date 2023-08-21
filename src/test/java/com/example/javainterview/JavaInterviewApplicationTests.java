@@ -13,13 +13,13 @@ class JavaInterviewApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
     // 一维数组存储原理理解
     public static void main(String[] args) {
         run();
         // 杨辉三角
-
 
     }
 
