@@ -3,6 +3,7 @@ package com.example.javainterview;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,13 +49,13 @@ class JavaInterviewApplicationTests {
         // Arrays常见方法
         // arraysCommonMethods();
         // 斐波那契数列
-        // fibonacciSequenceArrays();
+         fibonacciSequenceArrays();
         // 汉诺塔游戏
         // towerOfHanoi(3);
-        String ss="qwrwfxsvfdbn";
-       char[] chars = "cccqqqwwww".toCharArray();
-        ss.getChars(2,4,chars,3);
-        System.out.println(chars);
+//        String ss="qwrwfxsvfdbn";
+//       char[] chars = "cccqqqwwww".toCharArray();
+//        ss.getChars(2,4,chars,3);
+//        System.out.println(chars);
     }
 
     private static void towerOfHanoi(int n) {
@@ -73,19 +74,19 @@ class JavaInterviewApplicationTests {
     }
 
     private static void fibonacciSequenceArrays() {
-        int n=17;
-        int[] fibonacciSequence=new int[n];
+        int n=60;
+        BigDecimal[] fibonacciSequence=new BigDecimal[n];
         for (int i = 0; i <fibonacciSequence.length ; i++) {
             fibonacciSequence[i]=fibonacciSequence(i+1);
         }
         System.out.printf(Arrays.toString(fibonacciSequence));
     }
 
-    private static int fibonacciSequence(int n) {
+    private static BigDecimal fibonacciSequence(int n) {
         if (n==1||n==2){
-            return 1;
+            return new BigDecimal(1);
         }
-        return fibonacciSequence(n-1)+fibonacciSequence(n-2);
+        return fibonacciSequence(n-1).add(fibonacciSequence(n-2));
     }
 
     private static void quicklyOH() {
