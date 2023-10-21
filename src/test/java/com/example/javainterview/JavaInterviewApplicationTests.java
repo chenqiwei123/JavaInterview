@@ -19,9 +19,13 @@ class JavaInterviewApplicationTests {
 
     // 一维数组存储原理理解
     public static void main(String[] args) {
-        run();
-        // 杨辉三角
-
+        int i=1;
+        i=i++;
+        int j=i++;
+        int k=i + ++i * i++;
+        System.out.println("i="+i);
+        System.out.println("j="+j);
+        System.out.println("k="+k);
     }
 
 
@@ -74,7 +78,7 @@ class JavaInterviewApplicationTests {
     }
 
     private static void fibonacciSequenceArrays() {
-        int n=60;
+        int n=6;
         BigDecimal[] fibonacciSequence=new BigDecimal[n];
         for (int i = 0; i <fibonacciSequence.length ; i++) {
             fibonacciSequence[i]=fibonacciSequence(i+1);

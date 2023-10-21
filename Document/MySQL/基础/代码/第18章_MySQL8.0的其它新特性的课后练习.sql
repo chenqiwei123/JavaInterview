@@ -26,7 +26,7 @@ SELECT * FROM students;
 
 #3. 分别使用RANK()、DENSE_RANK() 和 ROW_NUMBER()函数对学生成绩降序排列情况进行显示
 #方式1：
-SELECT 
+SELECT
 ROW_NUMBER() OVER (ORDER BY points DESC) AS "排序1",
 RANK() OVER (ORDER BY points DESC) AS "排序2",
 DENSE_RANK() OVER (ORDER BY points DESC) AS "排序3",
@@ -35,7 +35,7 @@ FROM students;
 
 
 #方式2：
-SELECT 
+SELECT
 ROW_NUMBER() OVER w AS "排序1",
 RANK() OVER w AS "排序2",
 DENSE_RANK() OVER w AS "排序3",
