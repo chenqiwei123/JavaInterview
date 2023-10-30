@@ -1,6 +1,8 @@
 package com.example.javainterview.Version02;
 
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class VolatileDemo {
     public static void main(String[] args) {
         // 可见性的代码验证，正常情况。多个线程拿到主内存的同一变量数据，某个线程修改了这个变量数值，那么其他的变量是没有感知的。
