@@ -193,4 +193,77 @@ Unsafe是CAS的核心类，由于Java方法无法直接访问底层系统，需�
 
 #### ABA问题如何解决
 
+> 
+> 
 > 解决ABA问题的关键是使用版本号，在变量A上记录一个版本号，每次操作时，将版本号加一，当A值恢复为B时，检查A是否等于B，如果相等则说明A没有被其他线程修改过，可以执行操作，否则说明A被其他线程修改过。
+
+
+#### 代码层次解释
+
+[ABASolve.java](..%2F..%2Fsrc%2Fmain%2Fjava%2Fcom%2Fexample%2Fjavainterview%2FVersion02%2FABASolve.java)
+
+- **ABA问题产生**
+
+```java
+    /**
+     * ABA问题的解决，添加版本号。AtomicStampedReference进行解决
+     * A线程已经将变量A的值从100改为101，版本号+1，又改回了100版本号再次+1。B线程将变量A的值试图将100，发现版本号不一样，修改不成功。
+     */
+    public void ABAProblemSolve(){
+        new Thread(()->{
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            ABASolve.atomicStampedReference.compareAndSet(100,101,1,2);
+            ABASolve.atomicStampedReference.compareAndSet(101,100,2,3);
+
+        },"A").start();
+        new Thread(()->{
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            ABASolve.atomicStampedReference.compareAndSet(101,102,1,2);
+        },"B").start();
+        while (Thread.activeCount()>2){
+
+        }
+        System.out.println(ABASolve.atomicStampedReference.getReference());
+    }
+```
+
+- **ABA问题解决**
+
+```java
+    /**
+     * ABA问题的产生
+     * A线程已经将变量A的值从100改为101，又改回了100。但是B线程也能将变量A的值从100(A现成修改后的100了)改为102，
+     */
+    public void ABAProblem(){
+        new Thread(()->{
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            ABASolve.atomicInteger.compareAndSet(100,101);
+            ABASolve.atomicInteger.compareAndSet(101,100);
+
+        },"A").start();
+        new Thread(()->{
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            ABASolve.atomicInteger.compareAndSet(100,102);
+        },"B").start();
+        while (Thread.activeCount()>2){
+
+        }
+        System.out.println(ABASolve.atomicInteger);
+    }
+```
