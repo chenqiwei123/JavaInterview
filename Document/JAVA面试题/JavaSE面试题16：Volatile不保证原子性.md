@@ -46,13 +46,18 @@ public class VolatileAtom {
 
 ***执行结果**
 
-预期结果：main 	 atom.b: 	 2000000
+> 预期结果：main 	 atom.b: 	 2000000
 
 第一次：
+
 ![img_3.png](Image2%2Fimg_3.png)
+
 第二次：
+
 ![img_4.png](Image2%2Fimg_4.png)
+
 第三次：
+
 ![img_5.png](Image2%2Fimg_5.png)
 
 #### 为什么出现数值丢失
@@ -78,8 +83,8 @@ public class VolatileAtom {
 ![img_7.png](Image2%2Fimg_7.png)
 
 - 方法二：使用原子类
-- 
-AtomicInteger atomicInteger =new AtomicInteger(); // 创建原子Integer的包装类，默认为0;
+
+> AtomicInteger atomicInteger =new AtomicInteger(); // 创建原子Integer的包装类，默认为0;
 
 ```java
 public class VolatileAtom {
