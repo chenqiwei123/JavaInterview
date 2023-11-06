@@ -118,3 +118,7 @@ public class SpinLockDemo {
     }
 }
 ```
+
+**运行结果**
+
+![img_24.png](Image2%2Fimg_24.png)
