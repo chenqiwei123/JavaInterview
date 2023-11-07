@@ -76,3 +76,73 @@ class MyCache{
 ![img_25.png](Image2%2Fimg_25.png)
 
 从运行结果我们可以看出，写入操作是一个一个线程进行执行的，并且中间不会被打断，而读操作的时候，是同时5个线程进入，然后并发读取操作
+
+
+##### 附加
+
+**countdownLatch**
+
+> 计数器：在计数器上调用await()方法，当前线程将被挂起，直到计数器的值变为0才会被唤醒。
+> 
+> 计数器：在计数器上调用countDown()方法，计数器的值将会减1，当计数器的值变为0时，
+> 所有调用await()方法的线程将被唤。
+
+**countdownLatch的代码示例**
+
+```java
+public class CountDownLatchDemo {
+    public static void main(String[] args) throws InterruptedException {
+        final CountDownLatch countDownLatch = new CountDownLatch(3);
+        for (int i = 0; i < 3; i++) {
+            new Thread(() -> {
+                try {
+                    System.out.println(Thread.currentThread().getName()+"\t 进来了！！！");
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName()+"\t 我走了！！");
+                countDownLatch.countDown();
+            }).start();
+        }
+        // 计数器为0, 等待所有线程执行完毕
+        countDownLatch.await();
+        System.out.println(Thread.currentThread().getName()+"\t "+"所有线程都执行完毕了！！");
+    }
+}
+```
+
+**Semaphore**
+
+> 
+> 信号量：Semaphore 是一个计数信号量，用于控制同时访问特定资源的线程数量。
+
+**Semaphore的代码示例**
+
+```java
+public class SemaphoreDemo {
+    public static void main(String[] args) {
+        Semaphore semaphore =new Semaphore(3);
+        for (int i = 0; i < 6; i++) {
+            new Thread(() -> {
+                try {
+                    semaphore.acquire();
+                    System.out.println(Thread.currentThread().getName()+"\t 进来了！！！");
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName()+"\t 我走了！！");
+                semaphore.release();
+            }).start();
+        }
+        while (Thread.activeCount()>2) {
+
+        }
+    }
+}
+```
+
+**运行结果**
+
+![img_26.png](Image2%2Fimg_26.png)
